@@ -1,0 +1,64 @@
+---
+import CTAButton from "./CTAButton.astro";
+
+interface Props {
+  client: string;
+  industry: string;
+  services: string[];
+  duration: string;
+  url: string;
+  about: string;
+}
+
+const { client, industry, services, duration, url, about } = Astro.props;
+---
+
+<section id="about-project" class="px-8 lg:px-16 pb-8">
+  <div
+    class="text-white font-medium text-sm md:text-base uppercase py-8 border-t border-[var(--color-secondary)]"
+  >
+    <span class="mr-2">•</span>About the Project
+  </div>
+  <div class="flex gap-8">
+    <div class="w-3/5">
+      <p class="text-white text-xl font-normal text-balance">
+        {about}
+      </p>
+    </div>
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Client</p>
+        <p class="text-[var(--color-secondary)] text-base font-normal">
+          {client}
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Services</p>
+        <ul>
+          {
+            services.map((service) => (
+              <li class="text-[var(--color-secondary)] text-base font-normal">
+                {service}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <CTAButton target="_blank" url={url} text="View Project" />
+    </div>
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Industry</p>
+        <p class="text-[var(--color-secondary)] text-base font-normal">
+          {industry}
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <p class="text-white text-base font-medium">Duration</p>
+        <p class="text-[var(--color-secondary)] text-base font-normal">
+          {duration}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

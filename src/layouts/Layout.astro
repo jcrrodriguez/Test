@@ -1,0 +1,59 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+import "@fontsource-variable/inter";
+import Header from "@/components/Header.astro";
+import Cursor from "@/components/Cursor.astro";
+import Footer from "@/sections/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Cursor className="hidden lg:block" />
+    <Header />
+    <slot />
+    <Footer />
+    <style is:global>
+      :root {
+        --color-primary: #00ff18;
+        --color-hover: #00660a;
+        --color-secondary: #ababab;
+        --color-text: #ffffff;
+        --background-color: #0a0a0c;
+      }
+
+      html {
+        font-family:
+          "Inter Variable",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      body {
+        background-color: var(--background-color);
+      }
+
+      header {
+        background-color: var(--background-color);
+      }
+    </style>
+  </body>
+</html>
